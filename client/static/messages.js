@@ -9,6 +9,7 @@ function SaveMessage(json) {
 function CreateMessage(content) {
     const p = document.createElement('p')
     p.innerText = content.data;
+    p.id = `chat-${messages.indexOf(content)}`
     p.classList.add('message')
 
     if (content.source === socket.id) {
@@ -25,10 +26,14 @@ function CreateMessage(content) {
 function UpdateMessages(latest) {
 
     const msgRep = document.querySelector("#messages");
+    const inp = document.querySelector('input#message')
     msgRep.clearChildren();
 
     for (let msg of messages)
         msgRep.appendChild(CreateMessage(msg))
+
+    window.location = `#chat-${messages.indexOf(latest)}`;
+    inp.focus();
 
 
 }

@@ -13,3 +13,7 @@ body {
 .message.sender-me {
     text-align: right;
 }
+
+#messages {
+    overflow-y: scroll;
+}
