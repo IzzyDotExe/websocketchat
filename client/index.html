@@ -16,24 +16,16 @@
             const form = document.getElementById("form");
             const input = document.getElementById("message");
 
-            if (socket && _chatListeners.length === 0) {
+            if (!socket && _chatListeners.length === 0) {
 
-                socket.connect()
+                initSocket();
 
-                socket.on('connect', () => {
-                    console.log('Connected as: ' + socket.id)
-                    socket.on('chat', (data) => {
-                        const json = JSON.parse(data)
-                        for (let func of _chatListeners)
-                            func(json);
-                    })
-                })
-
-                form.addEventListener('submit', (e) => {
+                if (!form.onsubmit)
+                form.onsubmit = (e) => {
                     e.preventDefault();
                     SendChat(input.value);
                     input.value = '';
-                });
+                };
 
                 if (!_chatListeners.includes(SaveMessage))
                     AddChatListener(SaveMessage)
