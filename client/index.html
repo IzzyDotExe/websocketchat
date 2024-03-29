@@ -35,7 +35,9 @@
                     input.value = '';
                 });
 
-                AddChatListener(SaveMessage)
+                if (!_chatListeners.includes(SaveMessage))
+                    AddChatListener(SaveMessage)
+
                 AddChatListener(UpdateMessages)
             }
 
