@@ -1,0 +1,15 @@
+.content-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+body {
+    margin: 0;
+}
+
+.message.sender-me {
+    text-align: right;
+}

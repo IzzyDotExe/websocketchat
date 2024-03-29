@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket Messaging</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="static/utils.js"></script>
+    <script defer src="static/chat.js"></script>
+    <script defer src="static/messages.js"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const form = document.getElementById("form");
+            const input = document.getElementById("message");
+
+            if (socket && _chatListeners.length === 0) {
+
+                socket.connect()
+
+                socket.on('connect', () => {
+                    console.log('Connected as: ' + socket.id)
+                    socket.on('chat', (data) => {
+                        const json = JSON.parse(data)
+                        for (let func of _chatListeners)
+                            func(json);
+                    })
+                })
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    SendChat(input.value);
+                    input.value = '';
+                });
+
+                AddChatListener(SaveMessage)
+                AddChatListener(UpdateMessages)
+            }
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="content-wrapper">
+        <section id="messages">
+
+        </section>
+        <form id="form">
+            <input type="text" id="message">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
