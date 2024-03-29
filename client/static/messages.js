@@ -8,19 +8,21 @@ function SaveMessage(json) {
 
 function CreateMessage(content) {
     const p = document.createElement('p')
+    const div = document.createElement('div');
+    div.append(p);
     p.innerText = content.data;
-    p.id = `chat-${messages.indexOf(content)}`
-    p.classList.add('message')
+    div.id = `chat-${messages.indexOf(content)}`
+    div.classList.add('message')
 
     if (content.source === socket.id) {
-        p.classList.add('sender-me')
+        div.classList.add('sender-me')
     } else {
         const client = clients().indexOf(content.source)
-        p.classList.add(`sender-${client}`)
+        div.classList.add(`sender-${client}`)
     }
 
 
-    return p;
+    return div;
 }
 
 function UpdateMessages(latest) {
