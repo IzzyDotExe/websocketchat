@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+    color: #00ec00;
+    font-family: monospace;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    background-color: black;
+    border: 2px #1c1c1c solid;
+    color: #00ec00;
+    border-radius: 0px;
+    height: 30px;
+    width: 90%;
+    margin: 0 30px;
+}
+
+form {
+    margin: 5px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    max-width: 600px;
+}
+
+.message p {
+    margin: 2px 0;
+}
