@@ -1,4 +1,9 @@
+<!DOCTYPE html>
+
 <html>
+<section class="style">
+
+</section>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,18 +16,28 @@
     <script src="static/chat.js"></script>
     <script defer src="static/messages.js"></script>
 
+
+
     <script>
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('keyup', (e) => {
+            if (e.key === "\\") {
+                setCurrentStyle();
+                location.reload();
+            }
+        })
 
+        document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById("form");
             const input = document.getElementById("message");
 
             if (!socket && _chatListeners.length === 0) {
 
                 initSocket();
+                initStyle();
 
                 if (!form.onsubmit)
+
                 form.onsubmit = (e) => {
                     e.preventDefault();
                     SendChat(input.value);
@@ -34,10 +49,8 @@
 
                 AddChatListener(UpdateMessages)
             }
-
-
-
         })
+
     </script>
 </head>
 <body>
@@ -50,4 +63,5 @@
         </form>
     </div>
 </body>
+<script defer src="/static/styles.js"></script>
 </html>

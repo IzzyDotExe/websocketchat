@@ -5,11 +5,9 @@
     flex-direction: column;
     justify-content: end;
 }
-
 body {
     margin: 0;
 }
-
 #messages {
     overflow-y: scroll;
 }
